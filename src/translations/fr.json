@@ -712,7 +712,7 @@
   "OrderPanel.unknownTransactionProcess": "Oups, il semble que les processus de la place de marché ne soient pas à jour. Veuillez contacter l'assistance.",
   "Page.schemaDescription": "Une place de marché en ligne.",
   "Page.schemaTitle": "{marketplaceName}",
-  "PageBuilder.SearchCTA.CategoryFilter.placeholder": "Catégorie",
+  "PageBuilder.SearchCTA.CategoryFilter.placeholder": "Code postal",
   "PageBuilder.SearchCTA.CategoryFilter.selectAll": "Toutes les catégories",
   "PageBuilder.SearchCTA.buttonLabel": "Chercher",
   "PageBuilder.SearchCTA.currentLocationPlaceholder": "Emplacement actuel",

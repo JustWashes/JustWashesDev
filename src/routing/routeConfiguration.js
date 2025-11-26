@@ -5,6 +5,7 @@ import getPageDataLoadingAPI from '../containers/pageDataLoadingAPI';
 import NotFoundPage from '../containers/NotFoundPage/NotFoundPage';
 import PreviewResolverPage from '../containers/PreviewResolverPage/PreviewResolverPage';
 
+
 // routeConfiguration needs to initialize containers first
 // Otherwise, components will import form container eventually and
 // at that point css bundling / imports will happen in wrong order.
@@ -37,6 +38,10 @@ const StripePayoutPage = loadable(() => import(/* webpackChunkName: "StripePayou
 const TermsOfServicePage = loadable(() => import(/* webpackChunkName: "TermsOfServicePage" */ '../containers/TermsOfServicePage/TermsOfServicePage'));
 const TransactionPage = loadable(() => import(/* webpackChunkName: "TransactionPage" */ '../containers/TransactionPage/TransactionPage'));
 const NoAccessPage = loadable(() => import(/* webpackChunkName: "NoAccessPage" */ '../containers/NoAccessPage/NoAccessPage'));
+const SoftrTestPage = loadable(() => import(/* webpackChunkName: "SoftrTestPage" */ '../containers/SoftrTestPage/SoftrTestPage'));
+const StaffDashboardPage = loadable(() => import('../containers/StaffDashboardPage/StaffDashboardPage'));
+const CustomerOnboardingPage = loadable(() => import(/* webpackChunkName: "CustomerOnboardingPage" */ '../containers/CustomerOnboardingPage/CustomerOnboardingPage'));
+const ChooseSubscriptionPage = loadable(() => import('../containers/ChooseSubscriptionPage/ChooseSubscriptionPage'));
 
 // Styleguide helps you to review current components and develop new ones
 const StyleguidePage = loadable(() => import(/* webpackChunkName: "StyleguidePage" */ '../containers/StyleguidePage/StyleguidePage'));
@@ -80,6 +85,30 @@ const routeConfiguration = (layoutConfig, accessControlConfig) => {
       component: LandingPage,
       loadData: pageDataLoadingAPI.LandingPage.loadData,
     },
+    {
+    path: '/p/test',
+    name: 'SoftrTestPage',
+    component: SoftrTestPage,
+    auth: 'optional', // or 'authenticated' if you want only logged-in users
+    },
+    {
+    path: '/p/staff-dashboard',
+    name: 'StaffDashboardPage',
+    component: StaffDashboardPage,   // we will create this file next
+    auth: 'optional',                // or 'authenticated' if only staff login
+  },
+  {
+  path: '/p/choose-subscription',
+  name: 'ChooseSubscriptionPage',
+  component: ChooseSubscriptionPage,
+  auth: 'optional', // or 'authenticated' if needed
+  },
+    {
+  path: '/p/onboarding',
+  name: 'CustomerOnboardingPage',
+  component: CustomerOnboardingPage,
+  auth: 'authenticated',
+  },
     {
       path: '/p/:pageId',
       name: 'CMSPage',

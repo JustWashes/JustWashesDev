@@ -1319,27 +1319,37 @@ const validSortConfig = config => {
   return { active, queryParamName, relevanceKey, relevanceFilter, conflictingFilters, options };
 };
 
+// 🛠 FIXED: NO MORE FORCED "location" MODE
 const mergeSearchConfig = (
   hostedSearchConfig,
   defaultSearchConfig,
   categoryConfiguration,
   listingTypeConfig
 ) => {
-  // The sortConfig is not yet configurable through Console / hosted assets,
-  // but other default search configs come from hosted assets
+  // Keep hosted search config *only if* it doesn't overwrite searchType
   const searchConfig = hostedSearchConfig?.mainSearch
     ? {
         sortConfig: defaultSearchConfig.sortConfig,
-        // This just shows how to add custom built-in filters.
-        // Note: listingTypeFilter and categoryFilter might be overwritten by hostedSearchConfig
+
+        // Keep your default filters
         listingTypeFilter: defaultSearchConfig.listingTypeFilter,
         categoryFilter: defaultSearchConfig.categoryFilter,
+
+        // Spread hosted config BUT allow mainSearch from configSearch.js
         ...hostedSearchConfig,
+        mainSearch: hostedSearchConfig.mainSearch || defaultSearchConfig.mainSearch,
       }
     : defaultSearchConfig;
 
+  // ⛔ REMOVE this forced "location" override:
+  // const searchType = ['location', 'keywords'].includes(mainSearch?.searchType)
+  //   ? mainSearch?.searchType
+  //   : 'keywords';
+
+  // 🟢 USE ONLY WHAT YOU SET IN configSearch.js:
+  const searchType = searchConfig?.mainSearch?.searchType || 'category';
+
   const {
-    mainSearch,
     categoryFilter,
     listingTypeFilter,
     dateRangeFilter,
@@ -1349,12 +1359,10 @@ const mergeSearchConfig = (
     sortConfig,
     ...rest
   } = searchConfig || {};
-  const searchType = ['location', 'keywords'].includes(mainSearch?.searchType)
-    ? mainSearch?.searchType
-    : 'keywords';
 
   const categoryFilterMaybe =
     categoryFilter && categoryConfiguration.categories?.length > 0 ? [categoryFilter] : [];
+
   const keywordsFilterMaybe =
     keywordsFilter?.enabled === true
       ? [{ key: 'keywords', schemaType: 'keywords' }]
@@ -1363,16 +1371,9 @@ const mergeSearchConfig = (
       : [];
 
   const seatsFilterMaybe = typeof seatsFilter?.enabled === 'boolean' ? [seatsFilter] : [];
-
   const listingTypeFilterMaybe =
     typeof listingTypeFilter?.enabled === 'boolean' ? [listingTypeFilter] : [];
 
-  // This will define the order of default filters
-  // The reason: These default filters come from config assets and
-  // there they'll be their own separate entities and not wrapped in an array.
-  // Note: The category filter might affect the visibility of custom filters (listing fields).
-  //       It might be somewhat strange experience if a primary filter is among those filters
-  //       that are affected by category selection.
   const defaultFilters = [
     ...listingTypeFilterMaybe,
     ...categoryFilterMaybe,
@@ -1383,12 +1384,13 @@ const mergeSearchConfig = (
   ];
 
   return {
-    mainSearch: { searchType },
+    mainSearch: { searchType },   // 🔥 NOW RESPECTS CATEGORY OR ZIP
     defaultFilters: validDefaultFilters(defaultFilters, categoryConfiguration, listingTypeConfig),
     sortConfig: validSortConfig(sortConfig),
     ...rest,
   };
 };
+
 
 //////////////////////////////////
 // Validate transaction configs //

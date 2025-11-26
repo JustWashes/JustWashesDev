@@ -24,6 +24,8 @@ require('./env').configureEnv();
 // Note 2: this doesn't use instrument.js file but log.js
 const log = require('./log');
 
+
+
 const fs = require('fs');
 const express = require('express');
 const helmet = require('helmet');
@@ -59,6 +61,15 @@ const CSP = process.env.REACT_APP_CSP;
 const cspReportUrl = '/csp-report';
 const cspEnabled = CSP === 'block' || CSP === 'report';
 
+// 🚨 Stripe route must come AFTER express.json()!!
+const stripeCheckout = require('./api/stripe/stripeCheckout');
+
+// IMPORTANT ⚠️ Stripe cannot parse requests unless this is here
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// NOW we can register Stripe API route
+app.post('/api/stripe/checkout', stripeCheckout);
 // Without these, something will break for sure
 const MANDATORY_ENV_VARIABLES = [
   'REACT_APP_SHARETRIBE_SDK_CLIENT_ID',
@@ -80,6 +91,8 @@ const app = express();
 
 const errorPage500 = fs.readFileSync(path.join(buildPath, '500.html'), 'utf-8');
 const errorPage404 = fs.readFileSync(path.join(buildPath, '404.html'), 'utf-8');
+
+
 
 // Filter out bot requests that scan websites for php vulnerabilities
 // from paths like /asdf/index.php, //cms/wp-includes/wlwmanifest.xml, etc.

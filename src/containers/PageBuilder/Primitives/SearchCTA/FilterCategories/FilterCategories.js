@@ -21,7 +21,7 @@ const CategoryDropdown = ({ input, className, rootClassName, categories, alignLe
   };
 
   const handleOptionClick = optionId => {
-    const value = optionId === 'all-categories' ? '' : optionId;
+    const value = optionId === 'all-zip codes' ? '' : optionId;
     input.onChange(value);
     setHasSelected(true);
     setIsOpen(false);
@@ -71,7 +71,7 @@ const CategoryDropdown = ({ input, className, rootClassName, categories, alignLe
   ) : hasSelected && input.value === '' ? (
     <FormattedMessage id="PageBuilder.SearchCTA.CategoryFilter.selectAll" />
   ) : (
-    <FormattedMessage id="PageBuilder.SearchCTA.CategoryFilter.placeholder" />
+    "Select Zip Code"
   );
 
   const rootClass = rootClassName || css.root;
@@ -81,7 +81,7 @@ const CategoryDropdown = ({ input, className, rootClassName, categories, alignLe
   const allOptions = [
     {
       id: 'all-categories',
-      name: <FormattedMessage id="PageBuilder.SearchCTA.CategoryFilter.selectAll" />,
+      name: "All Regions",
     },
     ...categories,
   ];

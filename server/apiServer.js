@@ -19,6 +19,10 @@ const radix = 10;
 const PORT = parseInt(process.env.REACT_APP_DEV_API_SERVER_PORT, radix);
 const app = express();
 
+// enable JSON body parsing  ⬇️ (Stripe requires this)
+app.use(express.json());
+
+
 // NOTE: CORS is only needed in this dev API server because it's
 // running in a different port than the main app.
 app.use(
@@ -30,6 +34,10 @@ app.use(
 app.use(cookieParser());
 app.use('/.well-known', wellKnownRouter);
 app.use('/api', apiRouter);
+
+// 🔹 ADD STRIPE ROUTE HERE (MUST BE AFTER express.json)
+const stripeCheckout = require('./api/stripe/stripeCheckout');
+app.post('/api/stripe/checkout', stripeCheckout); // <– NOW WORKS
 
 // Generate web app manifest
 // When developing with "yarn run dev",

@@ -712,7 +712,7 @@
   "OrderPanel.unknownTransactionProcess": "Parece que los procesos del sistema no están actualizados. Comunícate con los administradores del sistema.",
   "Page.schemaDescription": "Un marketplace en línea",
   "Page.schemaTitle": "{marketplaceName}",
-  "PageBuilder.SearchCTA.CategoryFilter.placeholder": "Categoría",
+  "PageBuilder.SearchCTA.CategoryFilter.placeholder": "Código postal",
   "PageBuilder.SearchCTA.CategoryFilter.selectAll": "Todas las categorías",
   "PageBuilder.SearchCTA.buttonLabel": "Buscar",
   "PageBuilder.SearchCTA.currentLocationPlaceholder": "Ubicación actual",

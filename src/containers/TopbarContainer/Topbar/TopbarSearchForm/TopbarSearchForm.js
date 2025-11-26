@@ -80,7 +80,7 @@ const LocationSearchField = props => {
             inputClassName={isMobile ? css.mobileInput : css.desktopInput}
             predictionsClassName={isMobile ? css.mobilePredictions : css.desktopPredictions}
             predictionsAttributionClassName={isMobile ? css.mobilePredictionsAttribution : null}
-            placeholder={intl.formatMessage({ id: 'TopbarSearchForm.placeholder' })}
+            placeholder={intl.formatMessage({ id: 'View Professional Washers' })}
             closeOnBlur={!isMobile}
             inputRef={inputRef}
             input={{ ...restInput, onChange: searchOnChange }}

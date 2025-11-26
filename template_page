@@ -1,0 +1,29 @@
+/* src/containers/SoftrTestPage/SoftrTestPage.js
+
+import React from 'react';
+import { Page, LayoutSingleColumn } from '../../components';
+import TopbarContainer from '../../containers/TopbarContainer/TopbarContainer';
+import FooterContainer from '../../containers/FooterContainer/FooterContainer';  // <-- Correct footer!
+
+const SoftrTestPage = () => {
+  return (
+    <Page title="JustWashes Softr Dashboard">
+      { HEADER }
+      <TopbarContainer />
+
+      {/* MAIN CONTENT }
+      <LayoutSingleColumn>
+        <div style={{ padding: '24px', textAlign: 'center' }}>
+          <h1>JustWashes Dashboard</h1>
+          <p>Header + Footer should now be visible.</p>
+        </div>
+      </LayoutSingleColumn>
+
+      {/* FOOTER }
+      <FooterContainer />
+    </Page>
+  );
+};
+
+export default SoftrTestPage;
+*/

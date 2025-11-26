@@ -160,6 +160,7 @@
     box-shadow: var(--boxShadowButton);
     background-color: var(--colorWhite);
     text-decoration: none;
+    size: 50px;
   }
   &:disabled {
     box-shadow: none;

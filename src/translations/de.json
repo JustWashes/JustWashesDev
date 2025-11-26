@@ -712,7 +712,7 @@
   "OrderPanel.unknownTransactionProcess": "Hoppla, die Marktplatzprozesse scheinen nicht auf dem neuesten Stand zu sein. Bitte wende dich an den Marktplatzbetreiber.",
   "Page.schemaDescription": "Ein Online-Marktplatz.",
   "Page.schemaTitle": "{marketplaceName}",
-  "PageBuilder.SearchCTA.CategoryFilter.placeholder": "Kategorie",
+  "PageBuilder.SearchCTA.CategoryFilter.placeholder": "Postleitzahl",
   "PageBuilder.SearchCTA.CategoryFilter.selectAll": "Alle Kategorien",
   "PageBuilder.SearchCTA.buttonLabel": "Suchen",
   "PageBuilder.SearchCTA.currentLocationPlaceholder": "Aktueller Ort",
