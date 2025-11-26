@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/sharetribe/web-template.svg?style=svg)](https://circleci.com/gh/sharetribe/web-template)
 
-This is a template web application for Sharetribe marketplaces. You could create your own unique
+This is a crazy ahh fgood asd template web application for Sharetribe marketplaces. You could create your own unique
 marketplace web app by cloning this repository and then extending and customizing it to your needs.
 This template is bootstrapped with
 [create-react-app](https://github.com/facebookincubator/create-react-app) with some additions,
