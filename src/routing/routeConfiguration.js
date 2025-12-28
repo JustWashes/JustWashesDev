@@ -38,10 +38,12 @@ const StripePayoutPage = loadable(() => import(/* webpackChunkName: "StripePayou
 const TermsOfServicePage = loadable(() => import(/* webpackChunkName: "TermsOfServicePage" */ '../containers/TermsOfServicePage/TermsOfServicePage'));
 const TransactionPage = loadable(() => import(/* webpackChunkName: "TransactionPage" */ '../containers/TransactionPage/TransactionPage'));
 const NoAccessPage = loadable(() => import(/* webpackChunkName: "NoAccessPage" */ '../containers/NoAccessPage/NoAccessPage'));
+//Custom
 const SoftrTestPage = loadable(() => import(/* webpackChunkName: "SoftrTestPage" */ '../containers/SoftrTestPage/SoftrTestPage'));
 const StaffDashboardPage = loadable(() => import('../containers/StaffDashboardPage/StaffDashboardPage'));
 const CustomerOnboardingPage = loadable(() => import(/* webpackChunkName: "CustomerOnboardingPage" */ '../containers/CustomerOnboardingPage/CustomerOnboardingPage'));
 const ChooseSubscriptionPage = loadable(() => import('../containers/ChooseSubscriptionPage/ChooseSubscriptionPage'));
+const DashboardPage = loadable(() => import('../containers/DashboardPage/DashboardPage'));
 
 // Styleguide helps you to review current components and develop new ones
 const StyleguidePage = loadable(() => import(/* webpackChunkName: "StyleguidePage" */ '../containers/StyleguidePage/StyleguidePage'));
@@ -85,6 +87,7 @@ const routeConfiguration = (layoutConfig, accessControlConfig) => {
       component: LandingPage,
       loadData: pageDataLoadingAPI.LandingPage.loadData,
     },
+    //Custom
     {
     path: '/p/test',
     name: 'SoftrTestPage',
@@ -109,6 +112,12 @@ const routeConfiguration = (layoutConfig, accessControlConfig) => {
   component: CustomerOnboardingPage,
   auth: 'authenticated',
   },
+  {
+  path: '/dashboard',
+  name: 'DashboardPage',
+  component: DashboardPage,
+},
+  //end custom
     {
       path: '/p/:pageId',
       name: 'CMSPage',
