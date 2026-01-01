@@ -36,8 +36,8 @@ app.use('/.well-known', wellKnownRouter);
 app.use('/api', apiRouter);
 
 // 🔹 ADD STRIPE ROUTE HERE (MUST BE AFTER express.json)
-const stripeCheckout = require('./api/stripe/stripeCheckout');
-app.post('/api/stripe/checkout', stripeCheckout); // <– NOW WORKS
+//const stripeCheckout = require('./api/stripe/stripeCheckout');
+//app.post('/api/stripe/checkout', stripeCheckout); // <– NOW WORKS
 
 // Generate web app manifest
 // When developing with "yarn run dev",

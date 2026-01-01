@@ -6,6 +6,8 @@
  * endpoints are prefixed in the main server where this file is used.
  */
 
+
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const { deserialize } = require('./api-util/sdk');
@@ -22,6 +24,11 @@ const { authenticateFacebook, authenticateFacebookCallback } = require('./api/au
 const { authenticateGoogle, authenticateGoogleCallback } = require('./api/auth/google');
 
 const router = express.Router();
+//custom api
+const dashboardApi = require('./api/dashboard');
+const adminCreateWash = require('./api/adminCreateWash');
+const adminListWashes = require('./api/adminListWashes');
+
 
 // ================ API router middleware: ================ //
 
@@ -79,5 +86,17 @@ router.get('/auth/google', authenticateGoogle);
 // with Google. In this route a Passport.js custom callback is used for calling
 // loginWithIdp endpoint in Sharetribe Auth API to authenticate user to the marketplace
 router.get('/auth/google/callback', authenticateGoogleCallback);
+
+
+// Custom API endpoints refering to dashboard and washes
+router.get('/dashboard', dashboardApi);
+
+// Admin – list washes
+router.get('/admin/washes', adminListWashes);
+
+// Admin – create wash manually
+router.post('/admin/washes', adminCreateWash);
+
+
 
 module.exports = router;

@@ -1,0 +1,263 @@
+.pageBackground {
+  min-height: 100vh;
+  padding: 32px 16px 48px;
+  background: radial-gradient(circle at top left, #fef9c3 0, #f9fafb 40%, #e5f6ff 100%);
+}
+
+.pageHeader {
+  max-width: 1000px;
+  margin: 0 auto 24px;
+}
+
+.title {
+  margin: 0 0 6px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 420px auto; /* left card fixed, right side grows big */
+  gap: 36px;
+  width: 100%;
+}
+
+
+.card,
+.cardMuted {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px 22px;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid #e2e8f0;
+}
+
+.cardMuted {
+  background: #f9fafb;
+}
+
+.cardTitle {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #0f172a;
+}
+
+.cardSubtitle {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0 0 14px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formRow {
+  width: 100%;
+}
+
+.rowSplit {
+  display: flex;
+  gap: 10px;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-size: 12px;
+  color: #475569;
+  gap: 4px;
+}
+
+.input {
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 7px 10px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 120ms ease-out, box-shadow 120ms ease-out, background 120ms ease-out;
+  background: #ffffff;
+}
+
+.input:focus {
+  border-color: #0f7fe0;
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.35);
+  background: #f8fafc;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+.primaryButton {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #0f7fe0, #38bdf8);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.35);
+  transition: transform 130ms ease-out, box-shadow 130ms ease-out;
+}
+
+.primaryButton:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 30px rgba(37, 99, 235, 0.45);
+}
+
+.primaryButton:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.successBanner,
+.errorBanner {
+  margin-top: 4px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.successBanner {
+  background: rgba(34, 197, 94, 0.1);
+  color: #166534;
+  border: 1px solid rgba(34, 197, 94, 0.4);
+}
+
+.errorBanner {
+  background: rgba(248, 113, 113, 0.1);
+  color: #b91c1c;
+  border: 1px solid rgba(248, 113, 113, 0.45);
+}
+
+.todoList {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.todoList li + li {
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.tableWrapper {
+  margin-top: 12px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  padding: 0;
+  max-height: 520px;
+  overflow-y: auto;
+  overflow-x: auto; /* ensures full width scroll if needed */
+}
+
+
+.notesCell {
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table thead {
+  position: sticky;
+  top: 0;
+  background: #e5efff;
+  z-index: 1;
+}
+
+.table th,
+.table td {
+  padding: 6px 8px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.table th {
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.table tbody tr:hover {
+  background: #eef2ff;
+}
+
+.tableLoading,
+.tableEmpty {
+  padding: 10px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.monoCell {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  font-size: 11px;
+  color: #475569;
+}
+
+/* Status chips */
+
+.statusChipScheduled,
+.statusChipCompleted,
+.statusChipOther {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+
+.statusChipScheduled {
+  background: rgba(59, 130, 246, 0.12);
+  color: #1d4ed8;
+  border: 1px solid rgba(59, 130, 246, 0.5);
+}
+
+.statusChipCompleted {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.5);
+}
+
+.statusChipOther {
+  background: rgba(148, 163, 184, 0.16);
+  color: #475569;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
