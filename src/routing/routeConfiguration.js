@@ -45,6 +45,7 @@ const CustomerOnboardingPage = loadable(() => import(/* webpackChunkName: "Custo
 const ChooseSubscriptionPage = loadable(() => import('../containers/ChooseSubscriptionPage/ChooseSubscriptionPage'));
 const DashboardPage = loadable(() => import('../containers/DashboardPage/DashboardPage'));
 const AdminPage = loadable(() => import('../containers/AdminPage/AdminPage'));
+const StaffSchedulePage = loadable(() => import('../containers/StaffSchedulePage/StaffSchedulePage'));
 
 // Styleguide helps you to review current components and develop new ones
 const StyleguidePage = loadable(() => import(/* webpackChunkName: "StyleguidePage" */ '../containers/StyleguidePage/StyleguidePage'));
@@ -122,6 +123,11 @@ const routeConfiguration = (layoutConfig, accessControlConfig) => {
   path: '/admin',
   name: 'AdminPage',
   component: AdminPage,
+},
+{
+  path: '/staff-schedule',
+  name: 'StaffSchedulePage',
+  component: StaffSchedulePage,
 },
 
   //end custom
