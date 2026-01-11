@@ -28,6 +28,12 @@ const router = express.Router();
 const dashboardApi = require('./api/dashboard');
 const adminCreateWash = require('./api/adminCreateWash');
 const adminListWashes = require('./api/adminListWashes');
+const adminAvailability = require('./api/adminAvailability');
+const availability = require('./api/availability');
+const staffSchedule = require('./api/staffSchedule');
+const bookings = require('./api/bookings');
+
+
 
 
 // ================ API router middleware: ================ //
@@ -96,6 +102,18 @@ router.get('/admin/washes', adminListWashes);
 
 // Admin – create wash manually
 router.post('/admin/washes', adminCreateWash);
+
+
+router.get('/adminAvailability', adminAvailability);
+// ADD THIS LINE (new canonical path the frontend expects)
+router.get('/admin/availability', adminAvailability);
+
+router.get('/availability', availability);
+
+router.get('/staff/schedule', staffSchedule);
+router.post('/staff/schedule', staffSchedule);
+
+router.post('/bookings', bookings);
 
 
 

@@ -1,3 +1,4 @@
+// server/api/dashboard.js
 const { supabase } = require('../supabaseClient');
 
 module.exports = async (req, res) => {
@@ -6,11 +7,22 @@ module.exports = async (req, res) => {
 
     let query = supabase
       .from('washes')
-      .select('*')
+      .select(`
+        id,
+        scheduled_start,
+        scheduled_end,
+        location_id,
+        status,
+        vehicle_count,
+        washer_id,
+        washers (
+          display_name,
+          phone
+        )
+      `)
       .order('scheduled_start', { ascending: true });
 
     if (userId) {
-      // 🔹 Use the actual column name in your table
       query = query.eq('sharetribe_user_id', userId);
     }
 
@@ -40,8 +52,8 @@ module.exports = async (req, res) => {
           ? dt.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
           : '',
         location: row.location_id || '',
-        washerName: row.washer_id || '',
-        washerPhone: row.washer_phone || '',
+        washerName: row.washers?.display_name || '',
+        washerPhone: row.washers?.phone || '',
         status: row.status,
         vehicleCount: row.vehicle_count,
       };
@@ -49,7 +61,7 @@ module.exports = async (req, res) => {
       bucket.push(mapped);
     });
 
-     // --- NEW: credits query ---
+    // credits query unchanged
     const { data: creditRows, error: creditsError } = await supabase
       .from('subscription_credits')
       .select('*')
@@ -58,7 +70,6 @@ module.exports = async (req, res) => {
 
     if (creditsError) {
       console.error('Supabase error (credits):', creditsError);
-      // don't hard-fail dashboard, just log and return null credits
     }
 
     let creditsPayload = null;
@@ -70,10 +81,7 @@ module.exports = async (req, res) => {
       };
     }
 
-
-
-    return res.json({ upcoming, past,
-                     credits: creditsPayload });
+    return res.json({ upcoming, past, credits: creditsPayload });
   } catch (e) {
     console.error('Unexpected error in /api/dashboard:', e);
     return res.status(500).json({
